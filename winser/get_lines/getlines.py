@@ -5,7 +5,7 @@ session = requests.Session()
 session.auth = ('admin', 'admin$1234')
 
 auth = session.post('http://' + '127.0.0.1')
-response = session.get('http://' + hostname + ':8000/' + 'order-summary/')
+response = session.get('http://' + hostname + ':8000/' + 'order-summary/') # any of [trolley, cart, checkout, ...]
 
 #req = requests.get('http://127.0.0.1:8000/order-summary/')
 
