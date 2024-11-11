@@ -1,2 +1,2 @@
 codes.ini R"%USERPROFILE%\Desktop\repo\codes.ini"
-app_events.json R"%USERPROFILE%\AppData\Local\apploggingservice\app_events.json"
+app_events.json R"%USERPROFILE%\AppData\Local\apploggingservice\user_events.json"
