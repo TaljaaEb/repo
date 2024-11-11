@@ -1,0 +1,19 @@
+INPUT Templated
+=================================================================
+<div style="display: none; height: 0px;">
+            {% for order_item in order.items.all %}
+
+                <ln>{{order_item.item.line}} {{order_item.item.description}} {{order_item.category}} {{order_item.quantity}} {{order_item.hours}} {{order_item.item.price}}</ln><br>
+
+            {% endfor %}
+</div>
+
+OUTPUT Rendered 
+=================================================================
+
+<div style="display: none; height: 0px;">
+                <ln>Breco Crumbed Fish Cakes 2kg 1 None</ln><br>
+                <ln>Omo Auto Washing Powder 4kg 1 None</ln><br>
+                <ln>Fresh Chicken Mixed Portions 1 None</ln><br>
+                <ln>Rama Margarine Brick 500g 1 None</ln><br>
+</div>
