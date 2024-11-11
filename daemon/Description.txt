@@ -1,1 +1,6 @@
+OCCI
+----
+The Oracle C++ Call Interface, also known as OCCI, is an application programming interface (API) built upon the Oracle Call Interface (OCI - another lower level API from Oracle). One of the goals of OCCI is to offer C++ 
+programmers easy access to Oracle Database in a fashion similar to what Java Database Connectivity (JDBC) affords Java developers. 
+
 
