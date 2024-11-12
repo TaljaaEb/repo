@@ -1,17 +1,23 @@
 import requests
 
-#auth
-session = requests.Session()
-session.auth = ('admin', 'admin$1234')
+# Fill in your details here to be posted to the login form.
+payload = {
+    'login': 'admin',
+    'password': 'admin$1234'
+}
 
-auth = session.post('http://' + '127.0.0.1')
-response = session.get('http://' + hostname + ':8000/' + 'order-summary/') # any of [trolley, cart, checkout, ...]
+# Use 'with' to ensure the session context is closed after use.
+with requests.Session() as s:
+    p = s.post('http://127.0.0.1:8000/accounts/login/?next=/order-summary/', data=payload)
+    # print the HTML returned or something more intelligent to see if it's a successful login page.
+    #print(p.text)
 
-#req = requests.get('http://127.0.0.1:8000/order-summary/')
+    # An authorised request.
+    req = s.get('http://127.0.0.1:8000/order-summary/')
+    #print(r.text)
+        # etc...
 
-#test_str = req.text
-
-test_str_a = response.text
+test_str = req.text
 
 import re
 
@@ -34,6 +40,5 @@ def extract_strings_recursive(test_str, tag):
 
 tag = "b"
 lines = extract_strings_recursive(test_str, "ln")
-
 for line in lines:
     print(line)
