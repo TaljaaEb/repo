@@ -5,7 +5,7 @@ import hashlib
 
 clients = []
 connection = []
-HOST, PORT, CERT, KEY = '0.0.0.0', 8443, '/etc/ssl/certs/cert.pem', '/etc/ssl/private/key.pem'
+HOST, PORT = '0.0.0.0', 8443
 
 def get_ip():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -15,7 +15,8 @@ def get_ip():
     return IP
 
 def get_username():
-    USER = os.getlogin()
+#    USER = os.getlogin()
+    USER = os.path.expanduser('~')
     return USER
 
 def hashing(ctext):
@@ -46,7 +47,7 @@ def handle(conn, clients):
     var = match(conn)
     if var:
 #        connection = [connection.pop(0) for item in list(connection)]
-#            print(connection[0],connection[1],connection[2],connection[3]) 
+#            print(connection[0],connection[1],connection[2],connection[3])
              #connection[2].write(b'%s' % "CTRU".encode())
              #connection[3].write(b'%s' % "CTRU".encode())
         logger.debug(str(clients[0]))
@@ -55,7 +56,7 @@ def handle(conn, clients):
 #         logger.debug(str(clients[3]))
         clients = []
         var = False
-        connection = [] 
+        connection = []
 
 def main():
     i = 0
@@ -73,7 +74,7 @@ def main():
         try:
             conn = context.wrap_socket(ssock, server_side=True)
             connection.append(conn)
-	    #      handle(conn, clients)
+            #      handle(conn, clients)
             handle(connection[i], clients)
             i += 1
         except ssl.SSLError as e:
@@ -91,7 +92,7 @@ def mmmm():
     # Wrap the server with SSL
     httpd.socket = ssl.wrap_socket(httpd.socket,
                                keyfile="server.key",
-                               certfile="server.crt", 
+                               certfile="server.crt",
                                server_side=True)
 
     print("Server started at https://localhost:8443")
@@ -107,7 +108,7 @@ if __name__ == '__main__':
     h = logging.StreamHandler()
     h.setLevel(logging.DEBUG)
     logger.addHandler(h)
-#    logger.debug('- - - - - - - - - -'+'\n')     
+#    logger.debug('- - - - - - - - - -'+'\n')
     #REMOTE_IP = str(sys.argv[1])
     LOCAL_IP = get_ip()
     LOCAL_USER = get_username()
