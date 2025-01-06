@@ -27,4 +27,4 @@ COPY server.key /auth/
 EXPOSE 8443
 
 # Run the Python HTTPS server
-CMD ["python", "auth.py"]
+CMD ["python3", "auth.py"]
